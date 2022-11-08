@@ -5,14 +5,15 @@ import style from '../styles/style';
 import CustomStatusBar from '../layouts/StatusBar'
 import { Data } from '../data/data';
 import { Colors } from '../constant/Colors';
-import CustomModal from '../ui/Modal'
+import CustomModal from '../components/ui/Modal'
 
 const Home = () => {
     const [value, setValue] = useState(null);
     const [searchUserKey, setSearchUserKey] = useState('')
     const [searchData, setSearchData] = useState([])
     const [isShowingModal, setIsShowingModal] = useState(false)
-      
+    
+    //Fetch Search User
     useEffect(() => {
         if(value !=null && value !=''){
             setSearchData([]);
@@ -27,8 +28,10 @@ const Home = () => {
             
             //Get Searched User Key
             const searchUser = Object.keys(Data).filter(key => Data[key].name.replace(/\s/g, "") == value);
+            //Get Searched User Rank
             const searchUserRankTemp = rankedData.filter((filtered)=> filtered.key == searchUser);
             const searchUserRank = (searchUserRankTemp[0])?searchUserRankTemp[0]['rank']:'';
+
             setSearchUserKey(searchUser);
             if(searchUser.length > 0){
                 const userExist = topTenData.filter(top=> top.key == searchUser );
@@ -44,7 +47,7 @@ const Home = () => {
                         }
                         return obj;
                       });
-                   console.log('newTopTen', newTopTen)
+                   //console.log('newTopTen', newTopTen)
                     setSearchData(newTopTen)
                 }
             }else{
@@ -70,12 +73,15 @@ const Home = () => {
                 />
             <HeaderSearchBar handleSearch={(value)=> setValue(value.replace(/\s/g, ""))}/>
             <View style={style.table_wrapper}>
-                <View style={style.table_head}>
-                    <Text style={[style.table_column, style.text2]}>Name</Text>
-                    <Text style={[style.table_column, style.text2]}>Rank</Text>
-                    <Text style={[style.table_column, style.text2]}>Number of bananas</Text>
-                    <Text style={[style.table_column, style.text2]}>isSearchedUser?</Text>
-                </View>
+                {
+                     (searchData?.length > 0) && 
+                     <View style={style.table_head}>
+                        <Text style={[style.table_column, style.text2]}>Name</Text>
+                        <Text style={[style.table_column, style.text2]}>Rank</Text>
+                        <Text style={[style.table_column, style.text2]}>Number of bananas</Text>
+                        <Text style={[style.table_column, style.text2]}>isSearchedUser?</Text>
+                    </View>
+                }
 
                 {
                 searchData?.map((search, index)=>{

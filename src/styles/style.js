@@ -19,16 +19,19 @@ export default  styles = StyleSheet.create({
         fontSize: 15,
         fontWeight: '400',
         color: Colors.gray,
+        fontFamily: Platform.OS == 'ios' ? 'Helvetica': 'Roboto',
      },
      text2:{
         fontSize: 10,
         fontWeight: '600',
         color: Colors.gray,
+        fontFamily: Platform.OS == 'ios' ? 'Helvetica': 'Roboto',
      },
      screen_container:{
          width,
-         height,
+         height: '100%',
          backgroundColor: '#ffffff',
+         paddingTop: Platform.OS == 'ios'? 0: 30
      },
      searchbar: {
         marginHorizontal: 0,
@@ -111,7 +114,8 @@ export default  styles = StyleSheet.create({
         },
         shadowOpacity: 0.25,
         shadowRadius: 4,
-        elevation: 5
+        elevation: 5,
+        
       },
       button: {
         borderRadius: 10,
@@ -131,7 +135,11 @@ export default  styles = StyleSheet.create({
       },
       modalText: {
         marginBottom: 15,
-        textAlign: "center"
+        textAlign: "center",
+        fontSize: 17,
+        fontWeight: '400',
+        color: Colors.gray,
+        fontFamily: Platform.OS == 'ios' ? 'Helvetica': 'Roboto',
       }
     
 });
