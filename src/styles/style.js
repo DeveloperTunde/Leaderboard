@@ -57,7 +57,7 @@ export default  styles = StyleSheet.create({
     },
     header_button:{
         paddingHorizontal: 20,
-        paddingVertical: Platform.OS == 'ios' ? 16: 12,
+        paddingVertical: 16,
         borderRadius: 10,
         backgroundColor: '#e5e6e7',
 
