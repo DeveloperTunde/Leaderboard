@@ -3,10 +3,6 @@ import { Alert, Modal, StyleSheet, Text, Pressable, View } from "react-native";
 import style from "../../styles/style";
 
 const CustomModal = (props) => {
-
-
-
-  
   
   return (
     <View style={style.centeredView}>
